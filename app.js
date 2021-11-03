@@ -32,7 +32,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => res.render('index'));
+app.get('/', (req, res) => res.render('index', { title: 'homepage' }));
 
 app.use((req, res, next) => {
   next(createError(404));
