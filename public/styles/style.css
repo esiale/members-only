@@ -54,19 +54,7 @@ main {
 header {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-}
-
-header button {
-  width: 75px;
-  border: var(--text) 1px solid;
-  border-radius: 3px;
-  background-color: var(--primary);
-  font-family: 'Oxygen', sans-serif;
-  font-size: 0.9rem;
-  padding: 5px 0;
-  transition: background-color 200ms ease-in;
-  cursor: pointer;
+  padding: 10px 30px 10px 20px;
 }
 
 /* Header */
@@ -133,7 +121,7 @@ footer a {
 }
 
 .login-wrapper h1 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .login-wrapper p {
@@ -190,6 +178,10 @@ footer a {
   box-shadow: 0 0 7px 1px rgba(55, 142, 200, 0.5);
 }
 
+.login-wrapper a {
+  color: var(--accent);
+}
+
 .login-header {
   display: flex;
   align-self: flex-end;
@@ -199,4 +191,9 @@ footer a {
   gap: 15px;
   font-size: 0.85rem;
   color: hsl(0, 0%, 60%);
+}
+
+.login-divider {
+  border-bottom: 1px solid hsl(0, 0%, 80%);
+  padding-bottom: 25px;
 }
