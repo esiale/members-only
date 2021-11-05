@@ -19,18 +19,33 @@
         <div class="login-wrapper">
           <h1>Create a MembersOnly account</h1>
           <p>Who wouldn't want to be a part of this great community?</p>
-          <form action="">
+          <form method="post" action="">
             <label for="login">Login</label>
-            <input type="text" name="login" />
+            <input
+              type="text"
+              name="login"
+              value="<%= locals.user ? locals.user.login : ''%>"
+            />
+            <% if (locals.errors && locals.errors.login) { %>
+            <span class="form-error"><%= locals.errors.login.msg%></span>
+            <%}%>
             <label for="password">Password</label>
             <input type="password" name="password" />
-            <label for="confirm-password">Confirm password</label>
-            <input type="password" name="confirm-password" />
+            <% if (locals.errors && locals.errors.password) { %>
+            <span class="form-error"><%= locals.errors.password.msg%></span>
+            <%}%>
+            <label for="confirm_password">Confirm password</label>
+            <input type="password" name="confirm_password" />
+            <% if (locals.errors && locals.errors.confirm_password) { %>
+            <span class="form-error"
+              ><%= locals.errors.confirm_password.msg%></span
+            >
+            <%}%>
             <button type="submit">
               <img
                 src="/images/register.png"
                 alt="Account register icon"
-              />Create account
+              />Create Account
             </button>
           </form>
         </div>

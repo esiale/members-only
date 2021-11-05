@@ -1,14 +1,14 @@
 const express = require('express');
+const user_controller = require('../controllers/userController');
+
 const router = express.Router();
 
 router.get('/', (req, res, next) => res.render('index', { title: 'Homepage' }));
 
-router.get('/signup', (req, res, next) =>
-  res.render('signup', { title: 'Sign Up' })
-);
+router.get('/signup', user_controller.user_signup_get);
 
-router.get('/signin', (req, res, next) =>
-  res.render('signin', { title: 'Sign In' })
-);
+router.post('/signup', user_controller.user_signup_post);
+
+router.get('/signin', user_controller.user_signup_get);
 
 module.exports = router;
