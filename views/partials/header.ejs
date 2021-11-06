@@ -1,11 +1,15 @@
 <header>
   <%- include('logo'); %>
   <nav>
+    <% if (!currentUser) { %>
     <a href="/signup"><button class="sign-button">Sign up</button></a>
     <a href="/signin"
       ><button class="sign-button">
         <img src="/images/register.png" alt="Account register icon" />Sign In
       </button></a
     >
+    <% } else {%>
+    <a href="/signout"><button class="sign-button">Sign out</button></a>
+    <%}%>
   </nav>
 </header>

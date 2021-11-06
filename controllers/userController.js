@@ -64,3 +64,8 @@ exports.user_signin_post = passport.authenticate('local', {
   failureRedirect: '/signin',
   failureFlash: 'Invalid username or password.',
 });
+
+exports.user_signout_get = (req, res, next) => {
+  req.logout();
+  res.redirect('/');
+};
