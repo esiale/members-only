@@ -40,15 +40,19 @@ main {
   align-items: center;
 }
 
+.strong {
+  font-weight: 700;
+}
+
+.accent {
+  color: var(--accent);
+}
+
 /* Logo */
 
 .logo {
   font-size: 1.4rem;
   font-weight: 700;
-}
-
-.logo span {
-  color: var(--accent);
 }
 
 header {
@@ -202,4 +206,37 @@ footer a {
   margin-top: -7px;
   font-size: 0.8rem;
   color: hsl(0, 100%, 30%);
+}
+
+/* Rights */
+
+.rights-container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.rights {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  list-style: none;
+}
+
+.rights li {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.rights-can {
+  color: hsl(123, 41%, 45%);
+}
+
+.rights-cant {
+  color: hsl(14, 88%, 40%);
+}
+.rights img {
+  width: 24px;
+  height: 24px;
 }
