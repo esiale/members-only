@@ -10,6 +10,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const indexRouter = require('./routes/index');
 const User = require('./models/user');
+const bcrypt = require('bcrypt');
+const flash = require('connect-flash');
 require('dotenv').config();
 
 const mongoDb = process.env.MONGODB_URI || process.env.dev_db_url;
@@ -28,22 +30,27 @@ app.use(
     saveUninitialized: true,
   })
 );
+
 passport.use(
   new LocalStrategy((username, password, done) => {
-    User.findOne({ username: username }, (err, user) => {
+    User.findOne({ login: username }, (err, user) => {
       if (err) {
         return done(err);
       }
       if (!user) {
         return done(null, false, { message: 'Incorrect username' });
       }
-      if (user.password !== password) {
-        return done(null, false, { message: 'Incorrect password' });
-      }
-      return done(null, user);
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (res) {
+          return done(null, user);
+        } else {
+          return done(null, false, { message: 'Incorrect password' });
+        }
+      });
     });
   })
 );
+
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -56,6 +63,7 @@ passport.deserializeUser((id, done) => {
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
