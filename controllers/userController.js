@@ -71,9 +71,76 @@ exports.user_signout_get = (req, res, next) => {
   res.redirect('/');
 };
 
-exports.user_upgrade = [
+exports.user_upgrade_get = [
   utils.checkAuthentication,
   (req, res, next) => {
-    res.render('index', { title: 'test' });
+    res.render('upgrade', { title: 'Upgrade' });
+  },
+];
+
+exports.user_upgrade_post = [
+  utils.checkAuthentication,
+  body('upgrade_password')
+    .notEmpty()
+    .withMessage("Password can't be empty, duh...")
+    .custom((value) => {
+      if (value !== process.env.member_pwd && value !== process.env.admin_pwd) {
+        throw new Error('Invalid password.');
+      } else {
+        return true;
+      }
+    }),
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.render('upgrade', {
+        title: 'Upgrade',
+        errors: errors.mapped(),
+      });
+    } else {
+      const fetchUser = User.findOne({
+        login: res.locals.currentUser.login,
+      }).exec();
+      if (
+        res.locals.currentUser.status === 'new' &&
+        req.body.upgrade_password === process.env.member_pwd
+      ) {
+        try {
+          const user = await fetchUser;
+          user.status = 'member';
+          await user.save();
+          return res.redirect('/');
+        } catch (err) {
+          return next(err);
+        }
+      }
+      if (
+        (res.locals.currentUser.status === 'new' ||
+          res.locals.currentUser.status === 'member') &&
+        req.body.upgrade_password === process.env.admin_pwd
+      ) {
+        try {
+          const user = await fetchUser;
+          user.status = 'admin';
+          await user.save();
+          return res.redirect('/');
+        } catch (err) {
+          return next(err);
+        }
+      }
+      if (
+        res.locals.currentUser.status === 'member' ||
+        req.body.upgrade_password === process.env.member_pwd
+      ) {
+        return res.render('upgrade', {
+          title: 'Upgrade',
+          errors: {
+            upgrade_password: {
+              msg: "You're already a member!",
+            },
+          },
+        });
+      }
+    }
   },
 ];

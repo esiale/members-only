@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body>
+    <div class="wrapper">
+      <%- include('./partials/header'); %>
+      <main>
+        <div class="upgrade-wrapper">
+          <p>
+            Your current status is:
+            <span class="status strong"><%=currentUser.status%></span>
+          </p>
+          <% if (locals.currentUser.status !== 'admin') { %>
+          <form method="post" action="">
+            <label for="upgrade_password"
+              >Please provide a secret password to upgrade your
+              membership:</label
+            >
+            <input type="password" name="upgrade_password" />
+            <% if (locals.errors) { %>
+            <span class="form-error"
+              ><%= locals.errors.upgrade_password.msg%></span
+            >
+            <%}%>
+            <button type="submit" class="button-submit">Submit</button>
+          </form>
+          <%} else { %>
+          <p>No further upgrades are possible!</p>
+          <%}%>
+        </div>
+      </main>
+      <%- include('./partials/footer'); %>
+    </div>
+  </body>
+</html>

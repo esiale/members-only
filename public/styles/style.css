@@ -48,6 +48,39 @@ main {
   color: var(--accent);
 }
 
+.button-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  height: 45px;
+  font-size: 1.05rem;
+  border: 0;
+  border-radius: 3px;
+  background-color: var(--accent);
+  font-family: 'Oxygen', sans-serif;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  color: hsl(0, 100%, 100%);
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+input[type='text'],
+input[type='password'] {
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 3px;
+  padding: 6px 5px;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 1rem;
+}
+
+input[type='text']:focus,
+input[type='password']:focus {
+  outline: 0;
+  border: 1px solid hsl(204, 100%, 80%);
+  box-shadow: 0 0 7px 1px rgba(55, 142, 200, 0.5);
+}
+
 /* Logo */
 
 .logo {
@@ -147,40 +180,9 @@ footer a {
   margin-top: 10px;
 }
 
-.login-wrapper form button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  height: 45px;
-  font-size: 1.05rem;
-  border: 0;
-  border-radius: 3px;
-  background-color: var(--accent);
-  font-family: 'Oxygen', sans-serif;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-  color: hsl(0, 100%, 100%);
-  margin-top: 20px;
-  cursor: pointer;
-}
-
 .login-wrapper form button img {
   height: 30px;
   width: 30px;
-}
-
-.login-wrapper form input {
-  border: 1px solid hsl(0, 0%, 80%);
-  border-radius: 3px;
-  padding: 6px 5px;
-  font-family: 'Oxygen', sans-serif;
-  font-size: 1rem;
-}
-
-.login-wrapper form input:focus {
-  outline: 0;
-  border: 1px solid hsl(204, 100%, 80%);
-  box-shadow: 0 0 7px 1px rgba(55, 142, 200, 0.5);
 }
 
 .login-wrapper a {
@@ -260,4 +262,34 @@ footer a {
 .error-message {
   font-size: 1.4rem;
   margin-bottom: 20px;
+}
+
+/* Upgrade */
+
+.upgrade-wrapper {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.upgrade-wrapper p {
+  font-size: 1.2rem;
+}
+
+.upgrade-wrapper label {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.upgrade-wrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.status {
+  text-transform: capitalize;
 }

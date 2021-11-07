@@ -14,7 +14,7 @@
           <p>Welcome, <span class="strong"><%= currentUser.login %></span>!</p>
           <% } %>
           <ul class="rights">
-            <% if (!currentUser || currentUser.status !== 'new') { %>
+            <% if (!currentUser) { %>
             <li class="rights-cant">
               <img src="images/alert.png" alt="Warning icon" />You can't make
               new posts.
@@ -24,8 +24,8 @@
               <img src="images/check.png" alt="Check icon" />You can make new
               posts.
             </li>
-            <%} if (!currentUser || currentUser.status !== 'member' ||
-            !currentUser.status === 'admin') { %>
+            <%} if (!currentUser || (currentUser.status !== 'member' &&
+            currentUser.status !== 'admin')) { %>
             <li class="rights-cant">
               <img src="images/alert.png" alt="Warning icon" />You can't see
               authors.
@@ -35,8 +35,8 @@
               <img src="images/check.png" alt="Check icon" />You can see
               authors.
             </li>
-            <%} if (!currentUser || currentUser.status !== 'member' ||
-            currentUser.status !== 'admin') { %>
+            <%} if (!currentUser || (currentUser.status !== 'member' &&
+            currentUser.status !== 'admin')) { %>
             <li class="rights-cant">
               <img src="images/alert.png" alt="Warning icon" />You can't see
               dates.
