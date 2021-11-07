@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const utils = require('../middleware/utils');
 const { body, validationResult } = require('express-validator');
 
 exports.user_signup_get = (req, res, next) => {
@@ -69,3 +70,10 @@ exports.user_signout_get = (req, res, next) => {
   req.logout();
   res.redirect('/');
 };
+
+exports.user_upgrade = [
+  utils.checkAuthentication,
+  (req, res, next) => {
+    res.render('index', { title: 'test' });
+  },
+];

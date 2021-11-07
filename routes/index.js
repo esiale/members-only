@@ -15,4 +15,6 @@ router.post('/signin', user_controller.user_signin_post);
 
 router.get('/signout', user_controller.user_signout_get);
 
+router.get('/upgrade', user_controller.user_upgrade);
+
 module.exports = router;

@@ -210,10 +210,11 @@ footer a {
 
 /* Rights */
 
-.rights-container {
+.rights-wrapper {
   display: flex;
   flex-direction: column;
   gap: 7px;
+  font-size: 1.2rem;
 }
 
 .rights {
@@ -236,7 +237,27 @@ footer a {
 .rights-cant {
   color: hsl(14, 88%, 40%);
 }
+
 .rights img {
   width: 24px;
   height: 24px;
+}
+
+/* Error handling */
+
+.error-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.error-status {
+  font-size: 2rem;
+}
+
+.error-message {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
 }

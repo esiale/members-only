@@ -7,11 +7,11 @@
     <div class="wrapper">
       <%- include('./partials/header'); %>
       <main>
-        <div class="rights-container">
+        <div class="rights-wrapper">
           <% if (!currentUser) { %>
           <p>You're not logged in.</p>
           <% } else { %>
-          <p>Welcome, <span class="strong"><%= currentUser.login %>!</span></p>
+          <p>Welcome, <span class="strong"><%= currentUser.login %></span>!</p>
           <% } %>
           <ul class="rights">
             <% if (!currentUser || currentUser.status !== 'new') { %>
