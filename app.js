@@ -14,6 +14,7 @@ const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 const compression = require('compression');
 const helmet = require('helmet');
+const MongoStore = require('connect-mongo');
 require('dotenv').config();
 
 const mongoDb = process.env.MONGODB_URI || process.env.dev_db_url;
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
     secret: process.env.secret,
+    store: MongoStore.create({ mongoUrl: mongoDb }),
     resave: false,
     saveUninitialized: true,
   })
