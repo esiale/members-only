@@ -1,10 +1,14 @@
 {
   "name": "members-only",
-  "version": "1.0.0",
+  "version": "16.13.0",
+  "engines": {
+    "node": "12.18.4"
+  },
   "description": "",
   "main": "bin/www.js",
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "node ./bin.www",
+    "dev-start": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +23,7 @@
   "homepage": "https://github.com/esiale/members-only#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
     "date-fns": "^2.25.0",
     "debug": "^4.3.2",
@@ -27,6 +32,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "express-validator": "^6.13.0",
+    "helmet": "^4.6.0",
     "http-errors": "^1.8.0",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",

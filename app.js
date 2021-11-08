@@ -12,6 +12,8 @@ const indexRouter = require('./routes/index');
 const User = require('./models/user');
 const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
+const compression = require('compression');
+const helmet = require('helmet');
 require('dotenv').config();
 
 const mongoDb = process.env.MONGODB_URI || process.env.dev_db_url;
@@ -20,6 +22,8 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Mongo connection error'));
 
 const app = express();
+app.use(helmet());
+app.use(compression());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));

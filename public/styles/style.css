@@ -279,11 +279,18 @@ footer a {
 /* Rights */
 
 .rights-wrapper {
+  width: 600px;
   display: flex;
   flex-direction: column;
   gap: 7px;
   font-size: 1.2rem;
   margin: 0 5px 40px 5px;
+}
+
+@media screen and (max-width: 620px) {
+  .rights-wrapper {
+    width: 380px;
+  }
 }
 
 .rights {
