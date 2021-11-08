@@ -29,8 +29,7 @@ exports.post_add_post = [
     .notEmpty()
     .withMessage("Your post can't be empty!")
     .isLength({ max: 500 })
-    .withMessage("Your post can't have more than 500 characters.")
-    .escape(),
+    .withMessage("Your post can't have more than 500 characters."),
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
