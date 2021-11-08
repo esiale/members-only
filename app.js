@@ -23,8 +23,10 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Mongo connection error'));
 
 const app = express();
+app.enable('trust proxy');
 app.use(helmet());
 app.use(compression());
+app.use(cookieParser());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,6 +36,7 @@ app.use(
     store: MongoStore.create({ mongoUrl: mongoDb }),
     resave: false,
     saveUninitialized: true,
+    proxy: true,
   })
 );
 
