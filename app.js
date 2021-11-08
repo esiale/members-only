@@ -15,6 +15,8 @@ const flash = require('connect-flash');
 const compression = require('compression');
 const helmet = require('helmet');
 const MongoStore = require('connect-mongo');
+const cookieParser = require('cookie-parser');
+
 require('dotenv').config();
 
 const mongoDb = process.env.MONGODB_URI || process.env.dev_db_url;
