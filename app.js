@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const express = require('express');
 const createError = require('http-errors');
 const http = require('http');
@@ -16,8 +20,6 @@ const compression = require('compression');
 const helmet = require('helmet');
 const MongoStore = require('connect-mongo');
 const cookieParser = require('cookie-parser');
-
-require('dotenv').config();
 
 const mongoDb = process.env.MONGODB_URI || process.env.dev_db_url;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
