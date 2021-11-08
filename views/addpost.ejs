@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body>
+    <div class="wrapper">
+      <%- include('./partials/header'); %>
+      <main>
+        <div class="add-post-wrapper">
+          <form method="post" action="">
+            <label for="post_body">Type your post below:</label>
+            <textarea name="post_body" rows="5"></textarea>
+            <% console.log(locals.errors) %> <% if (locals.error) { %>
+            <span class="form-error"><%=locals.error.post_body.msg%></span>
+            <%}%>
+            <button type="submit" class="button-submit">Submit</button>
+          </form>
+        </div>
+      </main>
+      <%- include('./partials/footer'); %>
+    </div>
+  </body>
+</html>

@@ -99,10 +99,10 @@ exports.user_upgrade_post = [
       });
     } else {
       const fetchUser = User.findOne({
-        login: res.locals.currentUser.login,
+        login: req.user.login,
       }).exec();
       if (
-        res.locals.currentUser.status === 'new' &&
+        req.user.status === 'new' &&
         req.body.upgrade_password === process.env.member_pwd
       ) {
         try {
@@ -115,8 +115,7 @@ exports.user_upgrade_post = [
         }
       }
       if (
-        (res.locals.currentUser.status === 'new' ||
-          res.locals.currentUser.status === 'member') &&
+        (req.user.status === 'new' || req.user.status === 'member') &&
         req.body.upgrade_password === process.env.admin_pwd
       ) {
         try {
@@ -129,7 +128,7 @@ exports.user_upgrade_post = [
         }
       }
       if (
-        res.locals.currentUser.status === 'member' ||
+        req.user.status === 'member' ||
         req.body.upgrade_password === process.env.member_pwd
       ) {
         return res.render('upgrade', {

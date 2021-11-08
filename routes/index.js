@@ -1,5 +1,6 @@
 const express = require('express');
 const user_controller = require('../controllers/userController');
+const post_controller = require('../controllers/postController');
 
 const router = express.Router();
 
@@ -18,5 +19,9 @@ router.get('/signout', user_controller.user_signout_get);
 router.get('/upgrade', user_controller.user_upgrade_get);
 
 router.post('/upgrade', user_controller.user_upgrade_post);
+
+router.get('/addpost', post_controller.post_add_get);
+
+router.post('/addpost', post_controller.post_add_post);
 
 module.exports = router;
