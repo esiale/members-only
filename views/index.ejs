@@ -59,7 +59,7 @@
           </ul>
           <% if (!currentUser) { %>
           <p>Please create an account to be able to make new posts.</p>
-          <% } else { %>
+          <% } else if (currentUser.status !== 'admin') { %>
           <p>
             <a href="/upgrade"
               >Click <span class="strong accent">here</span> to upgrade your
