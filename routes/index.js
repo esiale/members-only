@@ -4,7 +4,7 @@ const post_controller = require('../controllers/postController');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => res.render('index', { title: 'Homepage' }));
+router.get('/', post_controller.index_get);
 
 router.get('/signup', user_controller.user_signup_get);
 
@@ -23,5 +23,7 @@ router.post('/upgrade', user_controller.user_upgrade_post);
 router.get('/addpost', post_controller.post_add_get);
 
 router.post('/addpost', post_controller.post_add_post);
+
+router.get('/remove/:id', post_controller.post_remove);
 
 module.exports = router;

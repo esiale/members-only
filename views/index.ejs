@@ -6,7 +6,7 @@
   <body>
     <div class="wrapper">
       <%- include('./partials/header'); %>
-      <main>
+      <main class="index">
         <div class="rights-wrapper">
           <% if (!currentUser) { %>
           <p>You're not logged in.</p>
@@ -68,8 +68,44 @@
           </p>
           <% } %>
         </div>
+        <div class="posts-wrapper">
+          <div class="post-new">
+            <% if (currentUser) { %>
+            <a class="strong" href="/addpost">Add a new post</a>
+            <%}%>
+          </div>
+          <% if (locals.posts) { %> <% posts.forEach((post) => { %>
+          <div class="post">
+            <div class="post-body"><%= post.body %></div>
+            <div class="post-info">
+              <div class="post-author">
+                Author: <% if (locals.currentUser && (currentUser.status === 'member' || currentUser.status === 'admin'))
+                { %>
+                <span class="strong"><%= post.author %></span>
+                <% } else { %>
+                <span class="post-red strong">Hidden</span>
+                <%}%>
+              </div>
+              <div class="post-date">
+                <% if (locals.currentUser && (currentUser.status === 'member' || currentUser.status === 'admin'))
+                { %>
+                  <%= format(post.date, 'PPpp') %></span>
+                <% } else { %>
+                Date: <span class="post-red strong">Hidden</span>
+                <%}%>
+              </div>
+            </div><% if (locals.currentUser && (currentUser.status === 'admin')) { %>
+              <div class="remove-post">
+                <a class="post-red" href="remove/<%=post._id%>">Remove this post</a>
+              </div>
+            <%}%>
+          </div>
+          <%})%>
+        </div>
+        <%}%>
       </main>
       <%- include('./partials/footer'); %>
     </div>
   </body>
 </html>
+
